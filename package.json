@@ -6,6 +6,7 @@
   "contributors": [],
   "type": "module",
   "scripts": {
+    "postinstall": "node add-ts-nocheck.cjs",
     "dev": "solid-start dev",
     "build": "solid-start build",
     "start": "solid-start start",
