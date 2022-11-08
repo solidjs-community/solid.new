@@ -10,7 +10,10 @@ export default defineConfig({
     solid({ islands: true }),
     unocss({
       presets: [presetWind()],
-      shortcuts: {},
+      shortcuts: {
+        h3: 'text-xl font-bold',
+        'text-link-l': 'text-xl font-medium',
+      },
     }),
   ],
   build: {

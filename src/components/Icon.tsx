@@ -9,7 +9,7 @@ const ExternalIcon: Component<IconProps & { path: string; alt: string }> = props
   </svg>
 )
 
-export const Gitgub: Component<IconProps> = props => (
+export const Github: Component<IconProps> = props => (
   <ExternalIcon alt="Github" {...props} path="/github.svg#githubSvgLogo" />
 )
 
@@ -19,4 +19,8 @@ export const Discord: Component<IconProps> = props => (
 
 export const Solid: Component<IconProps> = props => (
   <img alt="Solid" class={`img-svg ${props.class ?? ''}`} src="/solid.svg" />
+)
+
+export const ArrowRight: Component<IconProps> = props => (
+  <ExternalIcon alt="ArrowRight" {...props} path="/arrowRight.svg#arrowRightSvg" />
 )
