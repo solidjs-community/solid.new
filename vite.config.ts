@@ -13,6 +13,7 @@ export default defineConfig({
       shortcuts: {
         h3: 'text-xl font-bold',
         'text-link-l': 'text-xl font-medium',
+        'center-child': 'flex items-center justify-center',
       },
     }),
   ],

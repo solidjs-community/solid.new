@@ -1,6 +1,6 @@
 import { Component, ComponentProps } from 'solid-js'
 
-export type IconProps = Pick<ComponentProps<'svg'>, 'class' | 'classList'> & { title?: string }
+export type IconProps = Pick<ComponentProps<'svg'>, 'class' | 'classList'> & { alt?: string }
 
 const ExternalIcon: Component<IconProps & { path: string; alt: string }> = props => (
   <svg {...props} width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +19,10 @@ export const Discord: Component<IconProps> = props => (
 
 export const Solid: Component<IconProps> = props => (
   <img alt="Solid" class={`img-svg ${props.class ?? ''}`} src="/solid.svg" />
+)
+
+export const SolidMono: Component<IconProps> = props => (
+  <img alt={props.alt ?? 'Solid'} class={`img-svg ${props.class ?? ''}`} src="/solidMono.svg" />
 )
 
 export const ArrowRight: Component<IconProps> = props => (

@@ -1,9 +1,10 @@
 import { Component, ParentComponent } from 'solid-js'
 import * as Icon from '~/components/Icon'
+import { ReplBadge } from '~/components/ReplBadge'
 
 const Navbar: Component = () => {
   return (
-    <nav class="fixed top-0 left-0 right-0 p-6 flex justify-between bg-white dark:bg-gray-900">
+    <nav class="fixed top-0 left-0 right-0 px-6 py-4 flex justify-between bg-white border-b-1">
       <div class="flex items-center space-x-3">
         <a href="https://www.solidjs.com" target="_blank">
           <Icon.Solid />
@@ -68,6 +69,21 @@ export default function Home() {
             </ListLink>
           </ul>
         </header>
+        <section
+          class="mt-30 p-6 pl-12 -ml-6 mr-6 rounded-md bg-white border-1
+            flex flex-col items-start"
+        >
+          <h2 class="text-2xl font-bold">Open new playground</h2>
+          <p class="mt-4">
+            Open an online solid code editor right in your browser and see the compiler output.
+          </p>
+          <div class="mt-6">
+            <ReplBadge />
+          </div>
+        </section>
+
+        {/* TODO: remove */}
+        <div class="h-screen"></div>
       </main>
     </>
   )
