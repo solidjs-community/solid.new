@@ -2,9 +2,17 @@ import solid from 'solid-start/vite'
 import { defineConfig } from 'vite'
 import devtools from 'solid-devtools/vite'
 import unocss from 'unocss/vite'
+import presetWind from '@unocss/preset-wind'
 
 export default defineConfig({
-  plugins: [devtools({ name: true }), solid(), unocss()],
+  plugins: [
+    devtools({ name: true }),
+    solid({ islands: true }),
+    unocss({
+      presets: [presetWind()],
+      shortcuts: {},
+    }),
+  ],
   build: {
     target: 'esnext',
   },

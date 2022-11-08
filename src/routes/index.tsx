@@ -1,19 +1,26 @@
-import { Title } from 'solid-start'
-import Counter from '~/components/Counter'
+import { Component } from 'solid-js'
+import * as Icon from '~/components/Icon'
+
+const Navbar: Component = () => {
+  return (
+    <nav>
+      <a href="https://www.solidjs.com" target="_blank">
+        <Icon.Solid />
+      </a>
+      <a href="https://solid.new">
+        <p class="text-3">solid.new</p>
+      </a>
+    </nav>
+  )
+}
 
 export default function Home() {
   return (
-    <main>
-      <Title>Hello World</Title>
-      <h1>Hello world!</h1>
-      <Counter />
-      <p>
-        Visit{' '}
-        <a href="https://start.solidjs.com" target="_blank">
-          start.solidjs.com
-        </a>{' '}
-        to learn how to build SolidStart apps.
-      </p>
-    </main>
+    <>
+      <Navbar />
+      <main>
+        Github: <Icon.Gitgub />
+      </main>
+    </>
   )
 }

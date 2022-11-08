@@ -14,8 +14,11 @@
     "lint": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}"
   },
   "dependencies": {
+    "@solid-primitives/props": "^3.0.1",
     "@solidjs/meta": "^0.28.2",
     "@solidjs/router": "^0.5.0",
+    "@unocss/preset-wind": "^0.46.3",
+    "@unocss/reset": "^0.46.3",
     "solid-devtools": "^0.20.1",
     "solid-js": "^1.6.1",
     "solid-start": "^0.2.5",
@@ -34,5 +37,5 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@7.13.0"
+  "packageManager": "pnpm@7.14.0"
 }
