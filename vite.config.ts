@@ -12,7 +12,7 @@ export default defineConfig({
       presets: [presetWind()],
       shortcuts: {
         h3: 'text-xl font-bold',
-        'text-link-l': 'text-xl font-medium',
+        'text-link-lg': 'text-xl font-medium',
         'center-child': 'flex items-center justify-center',
       },
     }),

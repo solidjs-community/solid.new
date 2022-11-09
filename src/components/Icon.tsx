@@ -25,6 +25,22 @@ export const SolidMono: Component<IconProps> = props => (
   <img alt={props.alt ?? 'Solid'} class={`img-svg ${props.class ?? ''}`} src="/solidMono.svg" />
 )
 
+export const CSB: Component<IconProps> = props => (
+  <img alt={props.alt ?? 'CodeSandbox'} class={`img-svg ${props.class ?? ''}`} src="/csb.svg" />
+)
+
+export const Stackblitz: Component<IconProps> = props => (
+  <img
+    alt={props.alt ?? 'Stackblitz'}
+    class={`img-svg ${props.class ?? ''}`}
+    src="/stackblitz.svg"
+  />
+)
+
+export const Gitpod: Component<IconProps> = props => (
+  <img alt={props.alt ?? 'Gitpod'} class={`img-svg ${props.class ?? ''}`} src="/gitpod.svg" />
+)
+
 export const ArrowRight: Component<IconProps> = props => (
   <ExternalIcon alt="ArrowRight" {...props} path="/arrowRight.svg#arrowRightSvg" />
 )
