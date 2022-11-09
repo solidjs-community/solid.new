@@ -1,4 +1,14 @@
-import { Component, createResource, For, JSX, ParentComponent, Suspense, untrack } from 'solid-js'
+import {
+  Component,
+  createResource,
+  createSignal,
+  For,
+  JSX,
+  ParentComponent,
+  Suspense,
+  untrack,
+} from 'solid-js'
+import { unstable_island } from 'solid-start'
 import * as Icon from '~/components/Icon'
 import { ReplBadge } from '~/components/ReplBadge'
 
@@ -23,46 +33,6 @@ const Navbar: Component = () => {
       </div>
     </nav>
   )
-}
-
-const Section: ParentComponent<{
-  id: string
-  title: JSX.Element
-  subtitle: JSX.Element
-}> = props => {
-  return (
-    <section
-      id={props.id}
-      class="mt-30 p-6 pl-12 -ml-6 mr-6 rounded-md bg-white border-1 border-gray-2 shadow-lg flex flex-col items-start"
-    >
-      <h2 class="text-2xl font-bold">{props.title}</h2>
-      <p class="mt-4">{props.subtitle}</p>
-      <div class="mt-6 w-full">{props.children}</div>
-    </section>
-  )
-}
-
-async function fetchGithubContents(
-  owner: string,
-  repo: string,
-  path?: string,
-): Promise<{ name: string; type: string }[]> {
-  try {
-    const res = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/contents/${path ?? ''}`,
-      {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_PAT}`,
-          Accept: 'application/vnd.github+json',
-        },
-      },
-    )
-    return await res.json()
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(`Error fetching github content ${owner}/${repo}/${path ?? ''}`, error)
-    return []
-  }
 }
 
 export default function Home() {
@@ -140,39 +110,26 @@ export default function Home() {
             )
 
             return (
-              <ul>
-                <Suspense>
-                  <For each={templates()}>
-                    {name => {
-                      const ghPath = `${owner}/${repo}/tree/master/${name}`
-                      return (
-                        <li class="border-t-1 border-gray-4 pt-6 pb-8">
-                          <div class="flex">
-                            <header class="flex-1">
-                              <h4 class="text-link-lg">
-                                {name
-                                  .replace('-', ' + ')
-                                  .replace(/\bjs/, 'JavaScript')
-                                  .replace(/\bts/, 'TypeScript')}
-                              </h4>
-                            </header>
-                            <div>
-                              <a href={`https://github.com/${ghPath}`}>
-                                <Icon.Github />
-                              </a>
-                            </div>
-                          </div>
-                          <div class="mt-5 flex flex-col space-y-4">
-                            <ReplBadge type="stackblitz" ghPath={ghPath} />
-                            <ReplBadge type="csb" ghPath={ghPath} />
-                            <ReplBadge type="gitpod" ghPath={ghPath} />
-                          </div>
-                        </li>
-                      )
-                    }}
-                  </For>
-                </Suspense>
-              </ul>
+              <Suspense>
+                <LimitCards>
+                  <ul>
+                    <For each={templates()}>
+                      {name => (
+                        <TemplateCard
+                          owner={owner}
+                          repo={repo}
+                          title={name
+                            .replace('-', ' + ')
+                            .replace(/\bjs/, 'JavaScript')
+                            .replace(/\bts/, 'TypeScript')}
+                          path={name}
+                          branch="master"
+                        />
+                      )}
+                    </For>
+                  </ul>
+                </LimitCards>
+              </Suspense>
             )
           })}
         </Section>
@@ -182,4 +139,89 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+const Section: ParentComponent<{
+  id: string
+  title: JSX.Element
+  subtitle: JSX.Element
+}> = props => {
+  return (
+    <section
+      id={props.id}
+      class="mt-30 p-6 pl-12 -ml-6 mr-6 rounded-md bg-white border-1 border-gray-2 shadow-lg flex flex-col items-start"
+    >
+      <h2 class="text-2xl font-bold">{props.title}</h2>
+      <p class="mt-4">{props.subtitle}</p>
+      <div class="mt-6 w-full">{props.children}</div>
+    </section>
+  )
+}
+
+const LimitCards: ParentComponent = unstable_island(props => {
+  const [isOpen, setIsOpen] = createSignal(false)
+
+  return (
+    <div class="w-full overflow-hidden relative" classList={{ 'h-164': !isOpen() }}>
+      <div>{props.children}</div>
+      <div class="absolute left-0 right-0 bottom-0 h-32 gradient-to-top from-red to-green">
+        <button class="" onClick={() => setIsOpen(true)}>
+          Show More
+        </button>
+      </div>
+    </div>
+  )
+})
+
+const TemplateCard: Component<{
+  owner: string
+  repo: string
+  branch?: string
+  path?: string
+  title: string
+}> = ({ branch = 'main', path = '', owner, repo, title }) => {
+  const ghPath = `${owner}/${repo}/tree/${branch}/${path}`
+
+  return (
+    <li class="border-t-1 border-gray-4 pt-6 pb-8">
+      <div class="flex">
+        <header class="flex-1">
+          <h4 class="text-link-lg">{title}</h4>
+        </header>
+        <div>
+          <a href={`https://github.com/${ghPath}`}>
+            <Icon.Github />
+          </a>
+        </div>
+      </div>
+      <div class="mt-5 flex flex-col space-y-4">
+        <ReplBadge type="stackblitz" ghPath={ghPath} />
+        <ReplBadge type="csb" ghPath={ghPath} />
+        <ReplBadge type="gitpod" ghPath={ghPath} />
+      </div>
+    </li>
+  )
+}
+
+async function fetchGithubContents(
+  owner: string,
+  repo: string,
+  path?: string,
+): Promise<{ name: string; type: string }[]> {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${path ?? ''}`,
+      {
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_GITHUB_PAT}`,
+          Accept: 'application/vnd.github+json',
+        },
+      },
+    )
+    return await res.json()
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error fetching github content ${owner}/${repo}/${path ?? ''}`, error)
+    return []
+  }
 }
