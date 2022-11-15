@@ -1,0 +1,634 @@
+diff --git a/api/index.ts b/api/index.ts
+index 0bf7898fbc144f5d911359a2c5af2f5f6785052e..9a6caa114ee057d8401433e98c4200119a9aa246 100644
+--- a/api/index.ts
++++ b/api/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { registerApiRoutes } from "./internalFetch";
+ import { getRouteMatches } from "./router";
+ import { MatchRoute, Method, Route } from "./types";
+diff --git a/api/internalFetch.ts b/api/internalFetch.ts
+index b8f2951f38efae4f9c65a6d0f198dc0549ad107c..d780c66261c512eb1a82c0a65fdcca8eefeaa3bf 100644
+--- a/api/internalFetch.ts
++++ b/api/internalFetch.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { FETCH_EVENT } from "../server/types";
+ import { getRouteMatches } from "./router";
+ import type { APIEvent, MatchRoute, Method } from "./types";
+diff --git a/api/middleware.ts b/api/middleware.ts
+index b9d01fc82bf52146e9825dee8466001cdc9f12eb..2087de10cac99135746b81e249e57b9c333058b8 100644
+--- a/api/middleware.ts
++++ b/api/middleware.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { Middleware } from "../entry-server";
+ import { FetchEvent, FETCH_EVENT } from "../server/types";
+ import { getApiHandler } from "./index";
+diff --git a/api/router.ts b/api/router.ts
+index cc4eb7af7f27ef1179c6d5340e1932a44dc48455..6de11ea09bccbab530d97e1b29515398fc39ac8c 100644
+--- a/api/router.ts
++++ b/api/router.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { MatchRoute, Method } from "./types";
+ 
+ export function getRouteMatches(routes: MatchRoute[], path: string, method: Method) {
+diff --git a/api/types.ts b/api/types.ts
+index f0b94e2b5cc8d38974008c7570e25d74e9e35e75..6688fe35ae8bc33ed8e456fee5be87a5d863eb58 100644
+--- a/api/types.ts
++++ b/api/types.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { FetchEvent, FETCH_EVENT } from "../server/types";
+ 
+ export interface APIEvent extends FetchEvent {
+diff --git a/data/Form.tsx b/data/Form.tsx
+index 9665335513d404866b2f1f379db2a1e321208434..67f6d7aa655d2addb18f70ce388b90c0fcb9261b 100644
+--- a/data/Form.tsx
++++ b/data/Form.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/data/FormError.tsx b/data/FormError.tsx
+index f0c79c365f66e40b6b18810033b812cd7ab7ef69..41b6899a08d6e09fb28aeb95ab902afe1a037644 100644
+--- a/data/FormError.tsx
++++ b/data/FormError.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export class ServerError extends Error {
+   status: number;
+   constructor(message: string, { status, stack }: { status?: number; stack?: string } = {}) {
+diff --git a/data/createRouteAction.tsx b/data/createRouteAction.tsx
+index 8f5f96bcecbfe1660074749b74e037cd69007fba..b25606890fcc7c1d0b35b302c4eb276682b8a5a1 100644
+--- a/data/createRouteAction.tsx
++++ b/data/createRouteAction.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { useNavigate, useSearchParams } from "@solidjs/router";
+ import { $TRACK, batch, createSignal, useContext } from "solid-js";
+ import { FormError, FormImpl, FormProps } from "./Form";
+diff --git a/data/createRouteData.tsx b/data/createRouteData.tsx
+index 27de7ee5bb5f269ae5b8bbde5a2be4aa3c323851..f168b24135c82465ae14a627962d41612841ab5f 100644
+--- a/data/createRouteData.tsx
++++ b/data/createRouteData.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { Signal } from "solid-js";
+ import {
+   createResource,
+diff --git a/data/index.ts b/data/index.ts
+index 2cf7e4380920d562885be75104ae3b2914602175..fe9cd757af2f4daa41c9715d60978784557f9f34 100644
+--- a/data/index.ts
++++ b/data/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export { useRouteData } from "@solidjs/router";
+ export { createRouteAction, createRouteMultiAction } from "./createRouteAction";
+ export { createRouteData, refetchRouteData } from "./createRouteData";
+diff --git a/entry-client/StartClient.tsx b/entry-client/StartClient.tsx
+index 9cb76d2856c35f02ef994c78d79a06bed4b605a9..c3a38fb2b9c9c357f3f17b313ec115a0b8df067f 100644
+--- a/entry-client/StartClient.tsx
++++ b/entry-client/StartClient.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { MetaProvider } from "@solidjs/meta";
+ import { Router, RouterProps } from "@solidjs/router";
+ import Root from "~start/root";
+diff --git a/entry-client/index.tsx b/entry-client/index.tsx
+index e869653e962e9b6b2e6d642877da1a757a60ec9a..2f927e304774aa123cadc4245fba347af3869214 100644
+--- a/entry-client/index.tsx
++++ b/entry-client/index.tsx
+@@ -1,2 +1,4 @@
++// @ts-nocheck
++
+ export { default as mount } from "./mount";
+ export { default as StartClient } from "./StartClient";
+diff --git a/entry-client/mount.tsx b/entry-client/mount.tsx
+index 5f45feb83254062ed29b2cd55755f0ffeb12f13d..30de588e73b3c8c2d29f170aec37d8ab5937860a 100644
+--- a/entry-client/mount.tsx
++++ b/entry-client/mount.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { JSX } from "solid-js";
+ import { getOwner } from "solid-js";
+ import { createComponent, getNextElement, hydrate, render } from "solid-js/web";
+diff --git a/entry-server/StartServer.tsx b/entry-server/StartServer.tsx
+index b8d8db805cb9c3060e2e18fd76ae9bc4aedbc034..2e8ef79ece154c4122cdae3af9e8f8d8ab4dd592 100644
+--- a/entry-server/StartServer.tsx
++++ b/entry-server/StartServer.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { MetaProvider } from "@solidjs/meta";
+ import { RouteDataFunc, Router, RouterProps } from "@solidjs/router";
+ import { ComponentProps, sharedConfig } from "solid-js";
+diff --git a/entry-server/index.ts b/entry-server/index.ts
+index 0f964ff2aff7c86693ac4a2af1f0d3633841a625..e1f01795df3b74d7ffbc02c125967e343632bbf7 100644
+--- a/entry-server/index.ts
++++ b/entry-server/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export * from "./render";
+ // server-side only exports
+ export { composeMiddleware, createHandler, default as StartServer } from "./StartServer";
+diff --git a/entry-server/render.ts b/entry-server/render.ts
+index a5ef5ca50990baf7a339b15816b3fcf099ffd1c9..37054cadab8e049935fb4cc0672720d4ecc2b15a 100644
+--- a/entry-server/render.ts
++++ b/entry-server/render.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { JSX } from "solid-js";
+ import { renderToStream, renderToString, renderToStringAsync } from "solid-js/web";
+ import { internalFetch } from "../api/internalFetch";
+diff --git a/error-boundary/ErrorBoundary.tsx b/error-boundary/ErrorBoundary.tsx
+index 9d4b2f72461054fcf0d85ecf1d4f2ea653bc8f58..a78accf6ee7561aef2b3f9340dffe3ca6b0e1755 100644
+--- a/error-boundary/ErrorBoundary.tsx
++++ b/error-boundary/ErrorBoundary.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import {
+   createEffect,
+   ErrorBoundary as ErrorBoundaryBase,
+diff --git a/error-boundary/index.tsx b/error-boundary/index.tsx
+index d640eda08087da9d5cf6dff1b1b596263a001423..19a5c12c2b2f5a2e85b56841b278116038e259a5 100644
+--- a/error-boundary/index.tsx
++++ b/error-boundary/index.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { ErrorBoundary } from "./ErrorBoundary";
+ export { ErrorMessage } from "./ErrorBoundary";
+ export { ErrorBoundary };
+diff --git a/index.tsx b/index.tsx
+index 74f088b550d05a49f1dcd83cf13bf4f9c20e65c6..483814ec47b9864b2fc81c87d8725f9fdb3a9def 100644
+--- a/index.tsx
++++ b/index.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export { Link, Meta, Style, Stylesheet, Title } from "@solidjs/meta";
+ export {
+   Navigate,
+diff --git a/islands/clientOnly.tsx b/islands/clientOnly.tsx
+index a6d1b2193996b9a1893b795eb719c64ec4b80ef8..d8cf839a41968709c5045724893c2f27317b985a 100644
+--- a/islands/clientOnly.tsx
++++ b/islands/clientOnly.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { Component, ComponentProps, JSX } from "solid-js";
+ import { createMemo, createSignal, onMount, sharedConfig, splitProps, untrack } from "solid-js";
+ import { isServer } from "solid-js/web";
+diff --git a/islands/entry-client.ts b/islands/entry-client.ts
+index f14b5737baf801a81d45dec42b18e8ece6e1fd9a..b22d2191a50fc4eeda5ed56f067eaf87a4aa81e2 100644
+--- a/islands/entry-client.ts
++++ b/islands/entry-client.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import StartClient from "../entry-client/StartClient";
+ 
+ StartClient();
+diff --git a/islands/index.tsx b/islands/index.tsx
+index f4e192dc2671ddc060f37e56f92c45eb5d9fd3f6..5bc28e7809bfddac5077522d1c0a45be6da13026 100644
+--- a/islands/index.tsx
++++ b/islands/index.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { Component, ComponentProps, lazy, splitProps, useContext } from "solid-js";
+ import { Hydration, NoHydration } from "solid-js/web";
+ import { ServerContext } from "../server/ServerContext";
+diff --git a/islands/router.ts b/islands/router.ts
+index d9618a5e33141c4f057b5f486453178ca60a6124..1c33a50d93260fbddb76db05e1f8cfb8cbf1796b 100644
+--- a/islands/router.ts
++++ b/islands/router.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { Location, Navigator } from "@solidjs/router";
+ import { createSignal } from "solid-js";
+ interface LocationEntry {
+diff --git a/islands/server-router.tsx b/islands/server-router.tsx
+index a778780bc780061a90560912febfc1026e185d77..02dfb6de9bc2c40cd31e89ec3225c89ce87cd928 100644
+--- a/islands/server-router.tsx
++++ b/islands/server-router.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { createContext, JSX, useContext } from "solid-js";
+ import { ssr } from "solid-js/web";
+ export interface RouteDefinition {
+diff --git a/required-user-files.d.ts b/required-user-files.d.ts
+index fba3eb55c079e0bc6fbad9ec80b3a83a82fac784..5bf2b5b05bc198b82b7c8ffb2e47a6c3ce446e22 100644
+--- a/required-user-files.d.ts
++++ b/required-user-files.d.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ // These files are expected to exist in the user's project
+ 
+ declare module "~start/root" {
+diff --git a/root/Document.tsx b/root/Document.tsx
+index 19a9f0a300a62cb1bd4911272bd50875e5693b4e..371169d08060972e142ba984e6b0e66e128d80e6 100644
+--- a/root/Document.tsx
++++ b/root/Document.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { JSX } from "solid-js";
+ import { children, ComponentProps } from "solid-js";
+ import { insert, NoHydration, spread, ssrElement } from "solid-js/web";
+diff --git a/root/FileRoutes.tsx b/root/FileRoutes.tsx
+index d0adbb2c685552f294887aebb7fa4a048ec63f7a..a55cd7fa14981814bd2145ddc6ec6759f9f27fb2 100644
+--- a/root/FileRoutes.tsx
++++ b/root/FileRoutes.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /// <reference path="../server/types.tsx" />
+ 
+ // @ts-expect-error
+diff --git a/root/InlineStyles.tsx b/root/InlineStyles.tsx
+index cfa1b78ef93cf2a8bf4407c71e3d3155cd5c8e7b..b88ab54dc1e5218f1af5a1e4fbf3810b4d64577e 100644
+--- a/root/InlineStyles.tsx
++++ b/root/InlineStyles.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { Style } from "@solidjs/meta";
+ import { createResource, Show, Suspense, useContext } from "solid-js";
+ import type { PageEvent } from "../server";
+diff --git a/root/Links.tsx b/root/Links.tsx
+index 625c4e3fdb8efc68f443c07b2b5892f8df681c45..17ee3251ad1aa5c4cbba03364d65f5b54f45f6ac 100644
+--- a/root/Links.tsx
++++ b/root/Links.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { JSXElement, useContext } from "solid-js";
+ import { useAssets } from "solid-js/web";
+ import { ServerContext } from "../server/ServerContext";
+diff --git a/root/Meta.tsx b/root/Meta.tsx
+index 11decaaa01b10bc834cf89af3d6dbfb3f2016a97..6a461d3cc95d27c3749846d0144a4671f44dc1e4 100644
+--- a/root/Meta.tsx
++++ b/root/Meta.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { renderTags } from "@solidjs/meta";
+ import { useContext } from "solid-js";
+ import { ssr, useAssets } from "solid-js/web";
+diff --git a/root/Scripts.tsx b/root/Scripts.tsx
+index 8f64043dd6a9a19485ea43af87423764a770b813..1fa31d6d4ba28c10cbb05a1806aefb59eedd87c7 100644
+--- a/root/Scripts.tsx
++++ b/root/Scripts.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { useContext } from "solid-js";
+ import { HydrationScript, isServer, NoHydration } from "solid-js/web";
+ import { ServerContext } from "../server/ServerContext";
+diff --git a/root/index.tsx b/root/index.tsx
+index 0a49ce28d2b8949da7e30710150c3b39fcb6cce5..db3b7c59b40181c04429841567e2124c9295b86c 100644
+--- a/root/index.tsx
++++ b/root/index.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ // isomorphic exports
+ export { Body, Head, Html } from "./Document";
+ export { default as Links } from "./Links";
+diff --git a/router.tsx b/router.tsx
+index c8f6072fffa5e89fed50e910239a4e0fdc571b7d..58e3976124d53b56f3621b4162e4b622a679dc4c 100644
+--- a/router.tsx
++++ b/router.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import {
+   A as BaseA,
+   Location,
+diff --git a/server/ServerContext.tsx b/server/ServerContext.tsx
+index 006547d06ec1ee197d1a7dc282f30b473d5a7252..a9985d0e1f3befcfee9cf926cdd517f0751c8d7c 100644
+--- a/server/ServerContext.tsx
++++ b/server/ServerContext.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { PageEvent } from "./types";
+ 
+ import { createContext, useContext } from "solid-js";
+diff --git a/server/browser.ts b/server/browser.ts
+index 7e7c11106a1478f90e46e2af73a80097360014bc..de98980568a7bf7f30a23e03f12954064659ddac 100644
+--- a/server/browser.ts
++++ b/server/browser.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export { server$ as default } from "./server-functions/browser";
+ export * from "./shared";
+ 
+diff --git a/server/components/HttpHeader.tsx b/server/components/HttpHeader.tsx
+index 3c9b4f893905ae357d1c257622d75ae1a8e25c40..6ceb2c7d354c8ced0382002dad0d968be77a02fc 100644
+--- a/server/components/HttpHeader.tsx
++++ b/server/components/HttpHeader.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { onCleanup, useContext } from "solid-js";
+ import { isServer } from "solid-js/web";
+ import { ServerContext } from "../ServerContext";
+diff --git a/server/components/HttpStatusCode.tsx b/server/components/HttpStatusCode.tsx
+index 55dc877ea41362013c43967aef7dfccd178f693e..eabf87c9b689591503b25ff9d36e2922087cd1b3 100644
+--- a/server/components/HttpStatusCode.tsx
++++ b/server/components/HttpStatusCode.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { onCleanup, useContext } from "solid-js";
+ import { isServer } from "solid-js/web";
+ import { ServerContext } from "../ServerContext";
+diff --git a/server/data.ts b/server/data.ts
+index d65e4225f0bb5563a00ab7ca9e4d988e06d23a72..f4708093a04523d56a204a9b8169a7834903ebe3 100644
+--- a/server/data.ts
++++ b/server/data.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { createRouteAction, createRouteData, createRouteMultiAction } from "../data";
+ export { ServerError } from "../data";
+ export const createServerData$ = createRouteData;
+diff --git a/server/index.ts b/server/index.ts
+index e3a17c6cbd5577bb7f1e2b92d2a9c6d1f51d6c2e..512470beac8f60b0af4d6b51d3d4c827953ab5e5 100644
+--- a/server/index.ts
++++ b/server/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ // This file only exists to make the TypeScript tsconfig setting `"moduleResolution": "node"` work.
+ // See ./server.ts for the server entrypoint and ./browser.ts for the browser entrypoint
+ import server$ from "./server";
+diff --git a/server/middleware.ts b/server/middleware.ts
+index 28f60691ba7d9572bb32369697cf814f1e05610c..0f57f3775142c0aa46decf9669c9794524d476d4 100644
+--- a/server/middleware.ts
++++ b/server/middleware.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { internalFetch } from "../api/internalFetch";
+ import { Middleware as ServerMiddleware } from "../entry-server/StartServer";
+ import { ContentTypeHeader, XSolidStartContentTypeHeader, XSolidStartOrigin } from "./responses";
+diff --git a/server/responses.ts b/server/responses.ts
+index 8633ff3df32b7a22439583b69ebfb2d8338b5d2a..cb60961abc6946d423e06791168e0579fe518a3c 100644
+--- a/server/responses.ts
++++ b/server/responses.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export const XSolidStartStatusCodeHeader = "x-solidstart-status-code";
+ export const XSolidStartLocationHeader = "x-solidstart-location";
+ export const LocationHeader = "Location";
+diff --git a/server/server-functions/browser.ts b/server/server-functions/browser.ts
+index dd58643bf2952c040206e7da70dbd771a49969e6..9c3cf5d96901805196b39642ce0f641f7e83cd3d 100644
+--- a/server/server-functions/browser.ts
++++ b/server/server-functions/browser.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import {
+   ContentTypeHeader,
+   JSONResponseType,
+diff --git a/server/server-functions/server.ts b/server/server-functions/server.ts
+index 45657e8596dae165ef36694cb614f471ab71e588..56d28d8cf39b9ce3de1c975db9ec7ae50af2aca2 100644
+--- a/server/server-functions/server.ts
++++ b/server/server-functions/server.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { sharedConfig } from "solid-js";
+ import { internalFetch } from "../../api/internalFetch";
+ import { FormError } from "../../data";
+diff --git a/server/server-functions/types.ts b/server/server-functions/types.ts
+index 507e529b138df343d2d9ddf54e18ec565d314233..3920b37bd9516d9afc749949d66697dc26fc8eab 100644
+--- a/server/server-functions/types.ts
++++ b/server/server-functions/types.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { FetchEvent } from "../types";
+ 
+ export type ServerFunction<E extends any[], T extends (...args: [...E]) => void> = ((
+diff --git a/server/server.ts b/server/server.ts
+index 832b5cb0c8319efda5b9941269b0613cca48d226..5eca0453cb74a197e86fe302d6ad666049bb3d35 100644
+--- a/server/server.ts
++++ b/server/server.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { server$ } from "./server-functions/server";
+ 
+ export default server$;
+diff --git a/server/shared.ts b/server/shared.ts
+index 79bf4402dd2048f4f7fb703e9502a9a8917814f3..2442b2a6638cfec8da17efe0e73f8b41192651cb 100644
+--- a/server/shared.ts
++++ b/server/shared.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export { HttpHeader } from "./components/HttpHeader";
+ export { HttpStatusCode } from "./components/HttpStatusCode";
+ export { createServerAction$, createServerData$, createServerMultiAction$, ServerError } from "./data";
+diff --git a/server/types.tsx b/server/types.tsx
+index 8437e66a9674446692a8f52fd496cb23bc078801..12e533debcbded5168b8c3ed1301b21a8de74ef3 100644
+--- a/server/types.tsx
++++ b/server/types.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export type ManifestEntry = {
+   type: string;
+   href: string;
+diff --git a/session/cookie.ts b/session/cookie.ts
+index aca73114f9608471748c6871ad65f2aff8d07fe3..ccd6ca2a27b1fd671a69d9871ab4cf5b2f1b36f3 100644
+--- a/session/cookie.ts
++++ b/session/cookie.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * cookie
+  * Copyright(c) 2012-2014 Roman Shtylman
+diff --git a/session/cookieSigning.ts b/session/cookieSigning.ts
+index f40346021b546c8c62054b6e05612701514817fe..f66167f1172172fd5258d7496b907babf46299b6 100644
+--- a/session/cookieSigning.ts
++++ b/session/cookieSigning.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/session/cookieStorage.ts b/session/cookieStorage.ts
+index 3689da23584bb7da5f302e34756b7dc12322672e..becd6011bb5b4c2a201b7817d14b156814eeddd0 100644
+--- a/session/cookieStorage.ts
++++ b/session/cookieStorage.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/session/cookies.ts b/session/cookies.ts
+index bfde0bb156e909595bebd86f267e78ba4a8b1fc6..e439d9df1fc39d2bc88299572e0375de9e492f31 100644
+--- a/session/cookies.ts
++++ b/session/cookies.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/session/index.ts b/session/index.ts
+index d5d93809440f15109fc813f084306cd203f168f8..7c05352769025763ec03302ad91efe0ee61733f3 100644
+--- a/session/index.ts
++++ b/session/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/session/memoryStorage.ts b/session/memoryStorage.ts
+index fac4ebeff7fea9a3b61e2c4600e01e0e7f33a866..d0cdd5ee7ff4df7f46d53e20ca11badc6625deda 100644
+--- a/session/memoryStorage.ts
++++ b/session/memoryStorage.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/session/sessions.ts b/session/sessions.ts
+index 457fb85bd1a9052a701bb175a524b4f5ca6ad7ef..108d3bdccfeec62b8379eec95bc8b5d5891ac9f6 100644
+--- a/session/sessions.ts
++++ b/session/sessions.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ /*!
+  * Original code by Remix Sofware Inc
+  * MIT Licensed, Copyright(c) 2021 Remix software Inc, see LICENSE.remix.md for details
+diff --git a/types.ts b/types.ts
+index 792b8b353f653ea1ac18b56db11fbc62f1f49ba5..80b12020c7c91e8697a10d1f01bc1387aa053310 100644
+--- a/types.ts
++++ b/types.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import type { Debugger } from "debug";
+ import type { Component } from "solid-js";
+ 
+diff --git a/virtual/entry-client.tsx b/virtual/entry-client.tsx
+index ba4824e2f301b055ac3e5906d5b00e98cbf0801e..0e148eabc078b0f3c648589c0915fe571d793471 100644
+--- a/virtual/entry-client.tsx
++++ b/virtual/entry-client.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { mount, StartClient } from "../entry-client";
+ 
+ mount(() => <StartClient />, document);
+diff --git a/virtual/entry-server.tsx b/virtual/entry-server.tsx
+index 4e4a3cefb478c59568070fc89dae6489d9dc2f55..21d88e5351c6b07b8a0c1fd2b0bffba5f6b2bffd 100644
+--- a/virtual/entry-server.tsx
++++ b/virtual/entry-server.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { createHandler, renderAsync, StartServer } from "../entry-server";
+ 
+ export default createHandler(renderAsync(event => <StartServer event={event} />));
+diff --git a/virtual/root.tsx b/virtual/root.tsx
+index c329426a209eb448e30b31f4c89f1ed87b014d71..fb23d7fbf14dfca663b0c906136a5a2e150b7339 100644
+--- a/virtual/root.tsx
++++ b/virtual/root.tsx
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ // @refresh reload
+ import { Suspense } from "solid-js";
+ import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts } from "../";
+diff --git a/vite/index.d.ts b/vite/index.d.ts
+index 23bf4194e3802a3f5c363ac37d09cf633b842553..d60e0ad061a54fadfba9021cb8ed444b5faf9f46 100644
+--- a/vite/index.d.ts
++++ b/vite/index.d.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { Plugin } from "node_modules/vite";
+ import { Options } from "./plugin";
+ 
+diff --git a/vite/plugin.d.ts b/vite/plugin.d.ts
+index 84c080f0f49710bcd464d87f343e3d0aded991c9..7494952eb56e1b9d6ff9e04f4fca040a89e8399f 100644
+--- a/vite/plugin.d.ts
++++ b/vite/plugin.d.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ export type Options = {
+   adapter: string | { start; build };
+   appRoot: string;
+diff --git a/websocket/do.ts b/websocket/do.ts
+index 542f779703cd578772567d2fb13e1ca3042febee..27f0e589b40431e7aaa6f1f7d13c91b37663af77 100644
+--- a/websocket/do.ts
++++ b/websocket/do.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { webSocketHandlers } from "./webSocketHandlers";
+ export interface DurableObject {
+   fetch(request: Request): Promise<Response>;
+diff --git a/websocket/index.ts b/websocket/index.ts
+index 55715ff9e1dd67f6e3562b13cd97038c1fff56cc..820585834bdeeab0b4c6b15b3407b71fb3a7ab80 100644
+--- a/websocket/index.ts
++++ b/websocket/index.ts
+@@ -1,3 +1,5 @@
++// @ts-nocheck
++
+ import { ServerFunction } from "../server/server-functions/types";
+ import { webSocketHandlers } from "./webSocketHandlers";
+ 
+diff --git a/websocket/types.ts b/websocket/types.ts
+index e69de29bb2d1d6434b8b29ae775ad8c2e48c5391..47bb5ec9e1f63a1e4c7ee0e2756e5311a28d8e0a 100644
+--- a/websocket/types.ts
++++ b/websocket/types.ts
+@@ -0,0 +1,2 @@
++// @ts-nocheck
++
+diff --git a/websocket/webSocketHandlers.ts b/websocket/webSocketHandlers.ts
+index aac5b958ee406101c4acee104903e582fa965fea..192a07272eb874bdffca65207bcd0380e8e32221 100644
+--- a/websocket/webSocketHandlers.ts
++++ b/websocket/webSocketHandlers.ts
+@@ -1 +1,3 @@
++// @ts-nocheck
++
+ export const webSocketHandlers: { url: string; handler: any }[] = [];

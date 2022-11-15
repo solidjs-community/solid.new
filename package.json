@@ -6,11 +6,10 @@
   "contributors": [],
   "type": "module",
   "scripts": {
-    "postinstall": "node add-ts-nocheck.cjs",
     "dev": "solid-start dev",
     "build": "solid-start build",
     "start": "solid-start start",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc",
     "format": "prettier -w src/**/*.{js,ts,json,css,tsx,jsx}",
     "lint": "eslint --ignore-path .gitignore --max-warnings 0 src/**/*.{js,ts,tsx,jsx}"
   },
@@ -39,5 +38,10 @@
   "engines": {
     "node": ">=16"
   },
-  "packageManager": "pnpm@7.14.0"
+  "packageManager": "pnpm@7.14.0",
+  "pnpm": {
+    "patchedDependencies": {
+      "solid-start@0.2.5": "patches/solid-start@0.2.5.patch"
+    }
+  }
 }
